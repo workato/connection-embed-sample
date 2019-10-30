@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Connection embed sample</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+        <div class="widget">
+            <h4 class="widget__title d-flex justify-content-between">Connect: <span id="statusId" class="status"> loading...</span> </h1>
+            <div class="widget__content">
+                <iframe id="connectionId" src="<%= host %>/direct_link/embedded/connections/<%= id %>?workato_dl_token=<%= token %>" style="width:100%; height: 150px; border: 0"></iframe>
+            </div>
+        </div>
+    </div
+  </body>
+</html>
