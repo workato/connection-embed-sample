@@ -1,0 +1,44 @@
+.container {
+    max-width: 700px;
+}
+
+.widget {
+    margin: 10px;
+    border: 1px solid #ccc;
+    background: #f7f9fa;
+}
+
+.widget__title {
+    font-size:16px;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+.widget__content {
+    padding: 10px;
+}
+
+.status {
+    color: #999;
+    text-transform: uppercase;
+    font-weight: 400;
+    position: relative;
+}
+
+.status_active {
+    color: green;
+}
+.status:before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ccc;
+    top: 50%;
+    left: -10px;
+    transform: translateY(-50%);
+}
+
+.status_active:before {
+    background: green;
+}
