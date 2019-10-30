@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
 
   const host = process.env.WK_HOST;
 
-  res.render('index', { token, host, id: 62 });
+  res.render('index', { token, host, id: process.env.WK_CONNECTION_ID });
 });
 
 module.exports = router;
