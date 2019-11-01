@@ -27,7 +27,7 @@ export default app => {
 
     app.get('/workato-connections', (req, resp) => {
         const options = {
-            header1s: {
+            headers: {
                 'x-user-email': process.env.WK_EMAIL,
                 'x-user-token': process.env.WK_USER_TOKEN
             }
@@ -48,16 +48,11 @@ export default app => {
                 try {
                     const parsedData = JSON.parse(rawData);
                     console.log(parsedData);
+                    resp.json(parsedData.result);
                 } catch (e) {
                     sendError(e.message, resp);
                 }
             });
-
-            resp.on('end', (data) => {
-                console.log(data);
-                resp.json(data.json().result);
-            });
-
         }).on("error", (err) => {
             sendError("Error: " + err.message, resp);
         });

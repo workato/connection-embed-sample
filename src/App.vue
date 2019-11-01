@@ -320,6 +320,22 @@
       &_salesforce {
         background-image: url("assets/providers/salesforce.svg");
       }
+
+      &_zendesk {
+        background-image: url("assets/providers/zendesk.svg");
+      }
+
+      &_jira {
+        background-image: url("assets/providers/jira.svg");
+      }
+
+      &_marketo {
+        background-image: url("assets/providers/marketo.svg");
+      }
+
+      &_hubspot {
+        background-image: url("assets/providers/hubspot.svg");
+      }
     }
   }
 </style>
