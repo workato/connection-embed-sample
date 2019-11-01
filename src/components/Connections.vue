@@ -28,7 +28,7 @@
     </div>
 
     <div v-if="selectedConnection !== null" class="connection-widget-wrapper">
-      <Connection :connection="selectedConnection" :token="token"></Connection>
+      <Connection :connection="selectedConnection"></Connection>
     </div>
     <div v-if="loading" class="spinner"></div>
 
@@ -47,7 +47,6 @@
             return {
                 connections: [],
                 loading: false,
-                token: null,
                 selectedConnection: null,
                 hasError: null
             }
@@ -55,7 +54,6 @@
         async mounted() {
             this.loading = true;
             try {
-                this.token = await fetch('/workato-jwt').then(res => res.json());
                 this.connections = await fetch('/workato-connections').then(res => res.json());
             }
             catch (e) {

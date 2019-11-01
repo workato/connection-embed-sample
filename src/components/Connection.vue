@@ -23,7 +23,6 @@
     export default {
         name: "Connection",
         props: {
-            token: String,
             connection: Object
         },
         data() {
@@ -33,11 +32,13 @@
                 height: '100%'
             }
         },
-        mounted() {
+        async mounted() {
             window.addEventListener('message', this.receiveMessage);
 
+            const token = await fetch('/workato-jwt').then(res => res.json());
+
             this.isConnected = this.connection.authorization_status === 'success';
-            this.iframeSrc = `${config.workatoOrigin}/direct_link/embedded/connections/${this.connection.id}?workato_dl_token=${this.token}`;
+            this.iframeSrc = `${config.workatoOrigin}/direct_link/embedded/connections/${this.connection.id}?workato_dl_token=${token}`;
         },
 
         destroyed() {
