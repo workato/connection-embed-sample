@@ -33,7 +33,7 @@ export default app => {
             }
         };
 
-        https.get(`https://workato.com/api/managed_users/${process.env.WK_USER_ID}/connections`, options, (res) => {
+        https.get(`${process.env.VUE_APP_WK_HOST}/api/managed_users/${process.env.WK_USER_ID}/connections`, options, (res) => {
             if (res.statusCode !== 200) {
                 const error = `Request Failed. Status code: ${res.statusCode}.Message: ${res.statusMessage}`;
                 res.resume();
