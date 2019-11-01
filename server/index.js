@@ -33,6 +33,9 @@ export default app => {
             }
         };
 
+        console.dir(options);
+        console.log(`${process.env.VUE_APP_WK_HOST}/api/managed_users/${process.env.WK_USER_ID}/connections`);
+
         https.get(`${process.env.VUE_APP_WK_HOST}/api/managed_users/${process.env.WK_USER_ID}/connections`, options, (res) => {
             if (res.statusCode !== 200) {
                 const error = `Request Failed. Status code: ${res.statusCode}.Message: ${res.statusMessage}`;
