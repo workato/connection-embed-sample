@@ -14,7 +14,7 @@
       <ul class="connections__list">
         <li v-for="connection in connections"
           class="connections__item"
-          :class="{'connections__item_error': connection.authorization_status !== 'success'}" v-on:click="openConnection(connection)">
+          :class="{'connections__item_error': connection.authorization_status === 'error'}" v-on:click="openConnection(connection)">
           <div class="connection__icon" :class="'connection__icon_' + connection.provider"></div>
           <div>
             <div class="connections__item-name">{{connection.name}}</div>
