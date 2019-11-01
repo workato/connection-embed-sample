@@ -55,7 +55,7 @@ export default app => {
 
             resp.on('end', (data) => {
                 console.log(data);
-                resp.json(data.json());
+                resp.json(data.json().result);
             });
 
         }).on("error", (err) => {
