@@ -72,7 +72,8 @@
     }
 
     &__title-name {
-
+      font-size: 18px;
+      font-weight: 600;
     }
 
     &__title-status {
@@ -104,8 +105,13 @@
     }
 
     &__content {
-      padding: 10px;
+      padding: 10px 10px 0;
     }
+  }
+
+  .connection__icon {
+    width: 40px;
+    height: 40px;
   }
 
   iframe {

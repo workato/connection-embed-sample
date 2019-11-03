@@ -59,7 +59,7 @@
     right: 0;
     top: 50px;
     bottom: 0;
-    width: 500px;
+    width: 600px;
     background: #fff;
     padding: 20px;
     overflow: auto;

@@ -246,8 +246,8 @@
   }
 
   .logo {
-    margin-left: 20px;
-    width: 150px;
+    margin-left: 13px;
+    width: 160px;
     margin-right: auto;
     height: 29px;
     background: url("./assets/logo.png") center / contain no-repeat;
