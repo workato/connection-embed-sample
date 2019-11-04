@@ -12,6 +12,9 @@
       </div>
     </div>
     <div class="widget__content">
+      <div v-if="!iframeSrc" class="widget__content-loading">
+        Loading your connection…
+      </div>
       <iframe v-bind:src="iframeSrc" :style="{height: height}"></iframe>
     </div>
   </div>
@@ -105,6 +108,11 @@
 
     &__content {
       padding: 10px 10px 0;
+    }
+
+    &__content-loading {
+      text-align: center;
+      padding-top: 10px;
     }
   }
 
