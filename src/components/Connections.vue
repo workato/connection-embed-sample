@@ -33,7 +33,7 @@
     <div v-if="selectedConnection !== null" class="connection-widget-wrapper">
       <Connection :connection="selectedConnection"></Connection>
     </div>
-    <div v-if="loading" class="spinner"></div>
+    <div v-if="loading && connections.length === 0" class="spinner"></div>
 
     <div v-if="hasError">
       Something went wrong...
