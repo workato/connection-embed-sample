@@ -12,9 +12,7 @@
       </div>
     </div>
     <div class="widget__content">
-      <div v-if="hideIframe" class="widget__content-loading">
-        Loading your connection…
-      </div>
+      <div v-if="hideIframe" class="spinner"></div>
       <iframe v-bind:src="iframeSrc" :style="{height: height, visibility: hideIframe ? 'hidden' : 'visible'}"></iframe>
     </div>
   </div>
@@ -51,13 +49,13 @@
         methods: {
             receiveMessage(event) {
                 const data = JSON.parse(event.data);
-                this.hideIframe = false;
 
                 switch (data.type) {
                     case 'heightChange':
                         this.height = data.payload.height + 'px';
                         break;
                     case 'connectionStatusChange':
+                        this.hideIframe = false;
                         this.isConnected = data.payload.connected;
                         break;
                     case 'error':
@@ -110,6 +108,15 @@
 
     &__content {
       padding: 10px 10px 0;
+      position: relative;
+
+      .spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
     }
 
     &__content-loading {

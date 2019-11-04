@@ -115,25 +115,6 @@
     cursor: pointer;
   }
 
-  .spinner {
-    animation: spin .8s infinite linear;
-    border-color: #CFCFCE rgba(200,200,200, 0.5) rgba(200,200,200, 0.5);
-    border-radius: 50%;
-    border-style: solid;
-    border-width: 4px;
-    display: block;
-    height: 20px;
-    vertical-align: middle;
-    width: 20px;
-    margin: 30px auto;
-  }
-
-  @keyframes spin {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
   .connections {
     border: 1px solid #DFDFDE;
 
