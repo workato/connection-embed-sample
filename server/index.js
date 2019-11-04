@@ -33,30 +33,59 @@ export default app => {
             }
         };
 
-        https.get(`${process.env.VUE_APP_WK_HOST}/api/managed_users/${process.env.WK_USER_ID}/connections`, options, (res) => {
-            if (res.statusCode !== 200) {
-                const error = `Request Failed. Status code: ${res.statusCode}.Message: ${res.statusMessage}`;
-                res.resume();
-                sendError(error, resp);
-                return;
+        // https.get(`${process.env.VUE_APP_WK_HOST}/api/managed_users/${process.env.WK_USER_ID}/connections`, options, (res) => {
+        //     if (res.statusCode !== 200) {
+        //         const error = `Request Failed. Status code: ${res.statusCode}.Message: ${res.statusMessage}`;
+        //         res.resume();
+        //         sendError(error, resp);
+        //         return;
+        //     }
+        //
+        //     res.setEncoding('utf8');
+        //     let rawData = '';
+        //     res.on('data', (chunk) => { rawData += chunk; });
+        //     res.on('end', () => {
+        //         try {
+        //             const parsedData = JSON.parse(rawData);
+        //             console.log(parsedData);
+        //             resp.json(parsedData.result);
+        //         } catch (e) {
+        //             sendError(e.message, resp);
+        //         }
+        //     });
+        // }).on("error", (err) => {
+        //     sendError("Error: " + err.message, resp);
+        // });
+
+        resp.json([
+            {
+                "id": 30,
+                "name": "My Salesforce account",
+                "provider": "salesforce",
+                "authorization_status": "success",
+                "authorized_at": "2019-09-10T18:19:43.018-07:00",
+                "created_at": "2019-09-10T18:19:12.902-07:00",
+                "updated_at": "2019-09-10T18:19:43.021-07:00"
+            },
+            {
+                "id": 62,
+                "name": "My Box account",
+                "provider": "box",
+                "authorization_status": "",
+                "authorized_at": "2019-09-10T18:20:08.854-07:00",
+                "created_at": "2019-09-10T18:19:57.437-07:00",
+                "updated_at": "2019-09-10T18:20:08.859-07:00"
+            },
+            {
+                "id": 61,
+                "name": "My Salesforce account",
+                "provider": "salesforce",
+                "authorization_status": "success",
+                "authorized_at": "2019-09-10T18:19:43.018-07:00",
+                "created_at": "2019-09-10T18:19:12.902-07:00",
+                "updated_at": "2019-09-10T18:19:43.021-07:00"
             }
-
-            res.setEncoding('utf8');
-            let rawData = '';
-            res.on('data', (chunk) => { rawData += chunk; });
-            res.on('end', () => {
-                try {
-                    const parsedData = JSON.parse(rawData);
-                    console.log(parsedData);
-                    resp.json(parsedData.result);
-                } catch (e) {
-                    sendError(e.message, resp);
-                }
-            });
-        }).on("error", (err) => {
-            sendError("Error: " + err.message, resp);
-        });
-
+        ])
 
     })
 }
