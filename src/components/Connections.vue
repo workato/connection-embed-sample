@@ -3,7 +3,7 @@
     <h2 v-if="!selectedConnection">
       Manage connections
     </h2>
-    <h2 v-if="selectedConnection" class="back-header" v-on:click="selectedConnection = null">
+    <h2 v-if="selectedConnection" class="back-header" v-on:click="backToConnections()">
       <i class="fa fa-caret-left"></i>
       Back to all connections
     </h2>
@@ -14,14 +14,17 @@
       <ul class="connections__list">
         <li v-for="connection in connections"
           class="connections__item"
-          :class="{'connections__item_error': connection.authorization_status === 'error'}" v-on:click="openConnection(connection)">
-          <div class="connection__icon" :class="'connection__icon_' + connection.provider"></div>
-          <div>
-            <div class="connections__item-name">{{connection.name}}</div>
-            <div v-if="connection.authorization_status === 'success'" class="connections__item-date">
-                connected on {{ connection.authorized_at | moment("L LT")}}
+          :class="{'connections__item_disconnected': connection.authorization_status !== 'success', }" v-on:click="openConnection(connection)">
+          <div class="connections__content">
+            <div class="connection__icon" :class="'connection__icon_' + connection.provider"></div>
+            <div>
+              <div class="connections__item-name">{{connection.name}}</div>
+              <div v-if="connection.authorization_status === 'success'" class="connections__item-date">
+                  connected on {{ connection.authorized_at | moment("L LT")}}
+              </div>
             </div>
           </div>
+          <div class="connections__item-status">Access requested</div>
           <i class="fa fa-chevron-right"></i>
         </li>
       </ul>
@@ -52,22 +55,41 @@
             }
         },
         async mounted() {
-            this.loading = true;
-            try {
-                this.connections = await fetch('/workato-connections').then(res => res.json());
-            }
-            catch (e) {
-                console.error(e);
-                this.hasError = true;
-            }
-            finally {
-                this.loading = false;
-            }
-
+            this.getConnections();
         },
         methods: {
             openConnection(connection)  {
                 this.selectedConnection = connection;
+            },
+
+            backToConnections() {
+                this.selectedConnection = null;
+                this.getConnections();
+            },
+
+            async getConnections() {
+                this.loading = true;
+                try {
+                    this.connections = await fetch('/workato-connections').then(res => res.json());
+                    this.connections.sort((a, b) => {
+                        if (a.authorization_status === b.authorization_status) {
+                            return 0;
+                        }
+
+                        if (a.authorization_status === 'success') {
+                            return 1;
+                        }
+
+                        return -1;
+                    })
+                }
+                catch (e) {
+                    console.error(e);
+                    this.hasError = true;
+                }
+                finally {
+                    this.loading = false;
+                }
             }
         }
     }
@@ -136,6 +158,7 @@
       position: relative;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       border-left: 2px solid transparent;
       cursor: pointer;
 
@@ -150,14 +173,15 @@
         background: #f7f9fa;
       }
 
-
-
       &:last-child {
         border-bottom: none;
       }
 
-      &_error {
-        border-left: 2px solid #B6270A;
+      &_disconnected {
+        border-left: 4px solid #E67009;
+        .connections__item-status {
+          display: block;
+        }
       }
     }
 
@@ -168,6 +192,31 @@
     &__item-date {
       color: #92A3AD;
       font-size: 12px;
+    }
+
+    &__content {
+      display: flex;
+      align-items: center;
+    }
+
+    &__item-status {
+      display: none;
+      color: #E67009;
+      font-size: 12px;
+      padding: 0 25px 0 10px;
+      position: relative;
+
+      &:before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        top: 5px;
+        left: 0;
+        background: #E67009;
+        display: block;
+        position: absolute;
+      }
     }
 
   }

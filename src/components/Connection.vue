@@ -34,10 +34,9 @@
         },
         async mounted() {
             window.addEventListener('message', this.receiveMessage);
+            this.isConnected = this.connection.authorization_status === 'success';
 
             const token = await fetch('/workato-jwt').then(res => res.json());
-
-            this.isConnected = this.connection.authorization_status === 'success';
             this.iframeSrc = `${config.workatoOrigin}/direct_link/embedded/connections/${this.connection.id}?workato_dl_token=${token}`;
         },
 
@@ -79,13 +78,13 @@
     &__title-status {
       font-size: 12px;
       position: relative;
-      padding-left: 5px;
+      padding-left: 10px;
       color: #92A3AD;
 
       &:before {
         content: '';
-        width: 3px;
-        height: 3px;
+        width: 7px;
+        height: 7px;
         border-radius: 50%;
         top: 50%;
         left: 0;
