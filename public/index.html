@@ -5,8 +5,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Connection-embedded-sample</title>
+  <% if (NODE_ENV === 'production') { %>
+    <script>
+        if (location.protocol === 'http:') {
+            location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+        }
+    </script>
+  <% } %>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600&display=swap" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
 </head>
 <body>
 <noscript>
