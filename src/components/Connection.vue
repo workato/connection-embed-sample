@@ -12,10 +12,10 @@
       </div>
     </div>
     <div class="widget__content">
-      <div v-if="!iframeSrc" class="widget__content-loading">
+      <div v-if="hideIframe" class="widget__content-loading">
         Loading your connection…
       </div>
-      <iframe v-bind:src="iframeSrc" :style="{height: height}"></iframe>
+      <iframe v-bind:src="iframeSrc" :style="{height: height, visibility: hideIframe ? 'hidden' : 'visible'}"></iframe>
     </div>
   </div>
 </template>
@@ -32,7 +32,8 @@
             return {
                 isConnected: false,
                 iframeSrc: null,
-                height: '100%'
+                height: '100%',
+                hideIframe: true
             }
         },
         async mounted() {
@@ -50,6 +51,7 @@
         methods: {
             receiveMessage(event) {
                 const data = JSON.parse(event.data);
+                this.hideIframe = false;
 
                 switch (data.type) {
                     case 'heightChange':
@@ -111,7 +113,6 @@
     }
 
     &__content-loading {
-      text-align: center;
       padding-top: 10px;
     }
   }
