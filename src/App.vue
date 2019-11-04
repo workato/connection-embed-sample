@@ -256,6 +256,18 @@
           background-image: url("./assets/integration_icon_active.svg");
         }
       }
+
+      &:after {
+        display: none;
+        content: url("./assets/integration_icon_active.svg")
+                  url("./assets/analytics_icon_active.svg")
+                  url("./assets/requests_icon_active.svg")
+                  url("./assets/assets_icon_active.svg")
+                  url("./assets/content_icon_active.svg")
+                  url("./assets/campaigns_icon_active.svg")
+                  url("./assets/campaigns_icon_active.svg")
+                  url("./assets/home_icon_active.svg")
+      }
     }
 
     &__footer {
