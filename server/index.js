@@ -28,8 +28,7 @@ export default app => {
     app.get('/workato-connections', (req, resp) => {
         const options = {
             headers: {
-                'x-user-email': process.env.WK_USER_EMAIL,
-                'x-user-token': process.env.WK_USER_TOKEN
+                'Authorization': `Bearer ${process.env.WK_API_TOKEN}`
             }
         };
 
