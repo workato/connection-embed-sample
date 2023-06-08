@@ -40,6 +40,7 @@
 
             const token = await fetch('/workato-jwt').then(res => res.json());
             this.iframeSrc = `${config.workatoOrigin}/direct_link/embedded/connections/${this.connection.id}?workato_dl_token=${token}`;
+            this.hideIframe = false;
         },
 
         destroyed() {
