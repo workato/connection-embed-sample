@@ -49,7 +49,6 @@
 
         methods: {
             receiveMessage(event) {
-                const data = JSON.parse(event.data);
                 let data;
                 if(typeof event.data !== 'object') {
                   data = JSON.parse(event.data);
