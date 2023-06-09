@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="full-height">
     <div class="widget__title">
       <div class="connection__icon" :class="'connection__icon_' + connection.provider"></div>
       <div>
@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-    <div class="widget__content">
+    <div class="widget__content full-height">
       <div v-if="hideIframe" class="spinner"></div>
       <iframe v-bind:src="iframeSrc" :style="{height: height, visibility: hideIframe ? 'hidden' : 'visible'}"></iframe>
     </div>
@@ -138,5 +138,9 @@
   iframe {
     width: 100%;
     border: 0;
+  }
+
+  .full-height {
+    height: 100%;
   }
 </style>

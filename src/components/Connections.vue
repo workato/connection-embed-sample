@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="full-height no-scroll-padding">
     <h2 v-if="!selectedConnection">
       Manage connections
     </h2>
@@ -30,7 +30,7 @@
       </ul>
     </div>
 
-    <div v-if="selectedConnection !== null" class="connection-widget-wrapper">
+    <div v-if="selectedConnection !== null" class="connection-widget-wrapper full-height">
       <Connection :connection="selectedConnection"></Connection>
     </div>
     <div v-if="loading && connections.length === 0" class="spinner"></div>
@@ -208,4 +208,12 @@
     min-height: 200px;
   }
 
+  .full-height {
+    height: 100%;
+  }
+
+  .no-scroll-padding {
+    overflow: hidden;
+    padding-bottom: 100px;
+  }
 </style>
